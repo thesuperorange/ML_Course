@@ -1,0 +1,139 @@
+C =
+
+     0     2     0     2     7     0    38     0     1     1    46
+     0     1    48     2     0     0     0    63     1     1     0
+     0     5     2    24    39     0     0    18     2     4     5
+     0     0     6    14    34     0     0     1     4    21    13
+     0     2     8    41     1     8     0     0    45     0     0
+     0     1     6     8     0     0     8     0    35    22    12
+     0    69     7     8     1     0     0     4     2     0     3
+     0     0    13    16     0    74     0     7     7     0     0
+     0     0    16     8     0     0     0     0     9    51     3
+     0     0    21    32     0    13     0     0    31     1     2
+     0     0     0     0     0     0     0     0     0     0     0
+
+
+mapping =
+
+     7     2     5     3     8     1     2     5     9     1
+
+Confusion Matrix 1:
+
+confusion =
+
+   775     5
+   109   111
+
+sensitivity:Successful predict cluster 1: 0.999979
+specificity:Successful predict cluster 2: 0.713506
+Total image used: 1000
+Total iteration to converge: 69
+Total error rate: 0.011400
+Confusion Matrix 2:
+
+confusion =
+
+   858    60
+    43    39
+
+sensitivity:Successful predict cluster 1: 0.997564
+specificity:Successful predict cluster 2: 0.671815
+Total image used: 1000
+Total iteration to converge: 69
+Total error rate: 0.021700
+Confusion Matrix 3:
+
+confusion =
+
+   907    93
+     0     0
+
+sensitivity:Successful predict cluster 1: 0.994784
+specificity:Successful predict cluster 2: 0.000000
+Total image used: 1000
+Total iteration to converge: 69
+Total error rate: 0.031000
+Confusion Matrix 4:
+
+confusion =
+
+   689    19
+   206    86
+
+sensitivity:Successful predict cluster 1: 0.999620
+specificity:Successful predict cluster 2: 0.385251
+Total image used: 1000
+Total iteration to converge: 69
+Total error rate: 0.053500
+Confusion Matrix 5:
+
+confusion =
+
+   908    92
+     0     0
+
+sensitivity:Successful predict cluster 1: 0.994906
+specificity:Successful predict cluster 2: 0.000000
+Total image used: 1000
+Total iteration to converge: 69
+Total error rate: 0.062700
+Confusion Matrix 6:
+
+confusion =
+
+   895    25
+    11    69
+
+sensitivity:Successful predict cluster 1: 0.999610
+specificity:Successful predict cluster 2: 0.987530
+Total image used: 1000
+Total iteration to converge: 69
+Total error rate: 0.066300
+Confusion Matrix 7:
+
+confusion =
+
+   862    43
+    21    74
+
+sensitivity:Successful predict cluster 1: 0.998758
+specificity:Successful predict cluster 2: 0.962013
+Total image used: 1000
+Total iteration to converge: 69
+Total error rate: 0.072700
+Confusion Matrix 8:
+
+confusion =
+
+   863    36
+    50    51
+
+sensitivity:Successful predict cluster 1: 0.999131
+specificity:Successful predict cluster 2: 0.714073
+Total image used: 1000
+Total iteration to converge: 69
+Total error rate: 0.081300
+Confusion Matrix 9:
+
+confusion =
+
+   900   100
+     0     0
+
+sensitivity:Successful predict cluster 1: 0.993884
+specificity:Successful predict cluster 2: 0.000000
+Total image used: 1000
+Total iteration to converge: 69
+Total error rate: 0.091300
+Confusion Matrix 10:
+
+confusion =
+
+   857    13
+    46    84
+
+sensitivity:Successful predict cluster 1: 0.999885
+specificity:Successful predict cluster 2: 0.877096
+Total image used: 1000
+Total iteration to converge: 69
+Total error rate: 0.097200

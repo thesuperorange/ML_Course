@@ -1,0 +1,116 @@
+clc;clear all;
+close all;
+
+digits=10;
+bins=2;
+%initial
+
+
+%-----load train image------
+train_images = loadMNISTImages('train-images.idx3-ubyte');
+train_labels = loadMNISTLabels('train-labels.idx1-ubyte');
+[pixels, image_num] = size(train_images);
+train_bin_images = bin_image(train_images,bins);
+
+%initial
+p=0.5*ones(digits,pixels);  %p(j,k) if pixel=1, the prob of pixel k belongs to digit j
+lambda=0.1*ones(digits,1);    %lambda(i) the prob of image i
+w=zeros(digits,1);
+count_calculated=zeros(digits,1);
+%count=sum(train_bin_images,2); %total number of bit=1 in pixel x
+label_count = 0.00001*ones(digits,1);
+for i = 1:image_num
+    label = train_labels(i,1);
+    if(label==0) 
+        label=10;
+    end
+    label_count(label,1)= label_count(label,1)+1;
+end
+    
+for k=1:6000 %iteration
+    
+%E step 
+ prod_class=zeros(digits,1);
+ sum=0;
+    for i=1:digits       
+        prod=1;
+        for j=1:pixels
+            if(train_bin_images(j,k)==1)                
+                prod=prod*p(i,j);
+            elseif(train_bin_images(j,k)==0)
+                prod=prod*(1-p(i,j));
+            end
+        end
+        prod_class(i)=prod_class(i)+(lambda(i)*prod);
+        sum = sum+prod_class(i);
+    end
+    
+    max=0;pos=1;
+    for i=1:digits  
+        w(i)=prod_class(i)/sum;
+        if(max<w(i))
+            max=w(i);
+            pos=i;
+        end            
+    end
+% sum=transpose(lambda(:,j))*p(:,j);  %lambda1*p1 + lambda2*p2+.....
+% for i=1:digits
+%     if(sum==0) w(i,j)=1;
+%     else
+%     w(i,j)=lambda(i,j)/sum;    
+%     end
+% end
+
+
+
+
+%M step
+    count_calculated(pos)=count_calculated(pos)+1;
+    prev_p=p;
+    % update lambda
+    for  i=1:digits
+            lambda(i) = count_calculated(i) / i ;
+    end
+    
+    for i=1:digits
+            if (count_calculated(i) ~= 0) 
+                for j = 1: pixels
+                    p(i,j) = (1 / count_calculated(i)) * w(i)* train_bin_images(j,k);
+                end
+            end
+    end
+     
+     flag = 1;
+      for i=1:digits
+            for j = 1: pixels
+                if (norm(p(i,j)-prev_p(i,j))<0.0001)
+                    break;
+                end
+            end
+      end
+    
+    D=zeros(2,digits);
+    max2 = 0;
+    % Computing the confusion matrix 
+    clear max;
+    for i=1:digits
+      for j=1:digits
+            D(1,j) = abs(label_count(j) - count_calculated(j));
+            D(2,j) = max(label_count(j), count_calculated(j)) - abs(label_count(j) - count_calculated(j));
+            if (max2 > D(1,j)) 
+                max2 = D(2,j);
+                val = j;
+            end
+      end
+    end
+    fprintf("Sensitivity:%f \n",( D(1,i)/ (D(1,i) + D(2,i))));
+    fprintf("Specificity:%f \n",( D(2,i)/ (D(1,i) + D(2,i))));
+     
+
+end
+
+function train_binary_images=bin_image(train_images,bins)
+    divisor = 256/bins;
+    train_binary_images = zeros(size(train_images));
+    train_binary_images=floor(train_images/divisor) ; %32 bins
+end
